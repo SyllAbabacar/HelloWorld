@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)https://k8t3w3m6.ssl.hwcdn.net/v6/11/12/couponsbar.html -->
+<html class=" chrome-55"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>brappui Coupons Bar</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <div class="brappuibar">
+        <div class="brappuibar__logo">
+        </div>
+        <div class="brappuibar__container">
+            <div href="" target="_blank">
+                <div class="brappuibar__content" id="coupons-message"></div>
+            </div>
+            <a href="https://k8t3w3m6.ssl.hwcdn.net/v6/11/12/couponsbar.html" target="_blank">
+                <div class="brappuibar__content" id="coupons-blog-message"></div>
+            </a>
+
+            <div class="brappuibar__inneractions">
+                <div class="brappuibar__inneraction is-padding" data-toggle-list="">
+                    <a href="https://k8t3w3m6.ssl.hwcdn.net/v6/11/12/couponsbar.html" target="_blank" class="brappuibutton is-rounded">
+                        <span class="brappui-price_count"></span><span id="fd_coupons_found"></span>
+                    </a>
+                </div>
+                <div class="brappuibar__inneraction no-padding" data-toggle-list="">
+                    <a id="launch-coupons" class="brappuibutton is-darkend is-couponsbar">
+                        <span id="coupons_1"></span>
+                        <span class="brappui-coupon_count"></span> <span id="fd_coupons"></span><span id="coupons_2"></span><img src="./icon-down.svg" alt="">
+                    </a>
+                </div>
+                <div id="coupons-blog" class="brappuibar__inneraction" data-toggle-lis="">
+                    <a href="https://k8t3w3m6.ssl.hwcdn.net/v6/11/12/couponsbar.html#" target="_blank" id="launch-blog" class="brappuibutton is-darkend is-couponsbar" style="display:none">
+                        <span id="coupons-blog-string"></span>
+                        <img id="coupons-button-right" src="./icon-right.svg" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="sd-table" style="display:table;">
+                <div id="sd-partner" class="brappui-partnerInfo brappuibar__partnerinfo" style="display:table-cell;">Ad by rf</div>
+                <a href="https://k8t3w3m6.ssl.hwcdn.net/v6/11/12/couponsbar.html#" id="fd-partnerLink" class="brappuibar__partnerinfo" target="_blank" style="display: none;"></a>
+                <div class="brappui-appinfo brappuibar__partnerinfo" style="display:table-cell;"> </div>
+            </div>
+        </div>
+        <div class="brappuibar__actions">
+            <a href="https://k8t3w3m6.ssl.hwcdn.net/v6/11/12/couponsbar.html#" class="close-bar">
+                <div class="brappuibar__action">
+                    <img src="./icon-close.svg" alt="">
+                </div>
+            </a>
+            <a href="http://similardeals.net/" class="brappuibar__partnerlink" target="_blank" alt="About">
+                <div id="about-link" class="brappuibar__action" style="display: block;">
+                    <img src="./icon-question.svg" alt="">
+                </div>
+            </a>
+        </div>
+    </div>
+    <script src="./couponsbar-localization.js.téléchargement"></script>
+    <script src="./app.js.téléchargement"></script>
+    <script>
+        var couponsLoaded = false;
+        var couponsCount = document.querySelector('.brappui-price_count');
+        var couponsButton = document.getElementById('launch-coupons');
+        var closeButton = document.querySelector('.close-bar');
+        var couponsButtonSize;
+        var couponsButtonLoc;
+
+        var buttonLocation = function(buttonId) {
+            var e = document.getElementById(buttonId);
+            var offsetX = 0;
+            while (e) {
+                offsetX += e.offsetLeft;
+                e = e.offsetParent;
+            }
+            return offsetX;
+        };
+
+        var getCouponsButtonLocation = function() {
+            couponsButtonSize = document.querySelector('#launch-coupons').clientWidth / 2;
+            couponsButtonLoc = buttonLocation('launch-coupons');
+            return couponsButtonLoc + couponsButtonSize - 225;
+        }
+
+        brappui.storage = {
+            get: function(key, defaultValue) {
+                if (localStorage[key]) {
+                    try {
+                        return JSON.parse(localStorage[key]);
+                    } catch (ex) {
+
+                    }
+                }
+                if (defaultValue === undefined) {
+                    return null;
+                }
+                return defaultValue;
+            },
+            set: function(key, newValue) {
+                localStorage[key] = JSON.stringify(newValue);
+            },
+            remove: function(key) {
+                if (localStorage[key]) {
+                    delete localStorage[key];
+                }
+            }
+        };
+
+        brappui.main.addEventListener(couponsButton, 'mouseenter', function() {
+            brappui.main.fireEvent('toggleCoupons', {
+                position: getCouponsButtonLocation(),
+                open: true
+            });
+        });
+
+        brappui.main.addEventListener(couponsButton, 'click', function() {
+            brappui.main.fireEvent('toggleCoupons', {
+                position: getCouponsButtonLocation(),
+                open: !couponsLoaded
+            });
+        });
+
+        brappui.main.addEventListener(window, 'message', function(evt) {
+            var data = null;
+        
+        try {
+            data = JSON.parse(evt.data);
+        } catch(e){};
+
+        if (!data || !data.event) {
+        return;
+		}
+
+            switch (data.event) {
+                case 'updateCouponsCount':
+                    brappui.storage.set('brappui_domain', data.couponsData.domain);
+
+                    if (data.couponsData.couponsInBlog && typeof (data.couponsData.couponsInBlog) === 'object') {
+                        var couponsContent = document.querySelector('#coupons-blog-message');
+                        couponsContent.textContent = userLanguage.coupons_available_for_1 + ' ' + data.couponsData.couponsInBlog.domain + (userLanguage.coupons_available_for_2 ? ' ' + userLanguage.coupons_available_for_2 : '');
+                        couponsContent.parentElement.href = data.couponsData.couponsInBlog.url;
+                        document.querySelector('#launch-blog').style.display = 'block';
+                        var couponsButtonString = userLanguage.save_now;
+                        couponsCount.innerHTML = couponsButtonString;
+                        couponsCount.parentElement.href = data.couponsData.couponsInBlog.url;
+
+                        document.querySelector('.brappuibutton.is-rounded').style.display = 'none';
+                        document.querySelector('#launch-coupons').style.display = 'none';
+                        document.querySelector('#launch-blog').style.display = 'block';
+                        document.querySelector('.brappuibar__inneraction.is-padding').style.display = 'none';
+                        document.querySelector('.brappuibar__inneraction.no-padding').style.display = 'none';
+
+                        var couponsButtonString = userLanguage.save_now;
+
+                        document.querySelector('#coupons-blog-string').innerHTML = couponsButtonString;
+                        document.querySelector('#launch-blog').href = data.couponsData.couponsInBlog.url;
+                    } else if (data.couponsData.couponsInExtension && typeof (data.couponsData.couponsInExtension) === 'object') {
+                        var couponsContent = document.querySelector('.brappuibar__content');
+                        couponsContent.textContent = userLanguage.coupons_available_for_1 + ' ' + data.couponsData.domain + (userLanguage.coupons_available_for_2 ? ' ' + userLanguage.coupons_available_for_2 : '');
+                        document.querySelector('.brappuibar__inneraction.is-padding').style.display = 'none';
+                        var couponsButtonString = userLanguage.save_now;
+                        document.querySelector('.brappui-coupon_count').innerHTML = couponsButtonString;
+                        couponsLoaded = true;
+                    }
+                    break;
+                case 'addAboutLink':
+                    var data = JSON.parse(evt.data);
+                    var link = document.querySelector('.brappuibar__partnerlink');
+                    link.href = data.link;
+                    link.setAttribute('alt', data.text);
+                    // link.style.display = 'block';
+                    document.querySelector('#about-link').style.display = 'block';
+                    break;
+                case 'addPartnerInfo':
+                    var partnerInfo = document.querySelector('#sd-partner');
+                    var info = document.querySelector('#fd-partnerLink');
+                    if (data.link) {
+                        partnerInfo.innerHTML = userLanguage.powered_by;
+                        info.href = data.link;
+                        info.innerHTML = data.text;
+                    } else {
+                        info.style.display = 'none';
+                        partnerInfo.innerHTML = userLanguage.powered_by + ' ' + data.text;
+                    }
+
+                    if (data.appInfo) {
+                        document.querySelector('.brappui-appinfo').innerHTML = ' ' + data.appInfo;
+                    }
+
+                    break;
+            }
+        });
+
+        brappui.main.addEventListener(closeButton, 'click', function() {
+            brappui.main.fireEvent('closeBar', '');
+        });
+    </script>
+
+
+</body></html>

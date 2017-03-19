@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://k8t3w3m6.ssl.hwcdn.net/v6/11/12/list.html -->
+<html class=" chrome-55"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>brappui List</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./main.css">
+  </head>
+  <body>
+
+    <div class="brappuilist brappuipopup">
+      <div class="brappuilist__items">
+        <!-- <div class="brappuilist__loadingindicator"></div> -->
+      </div>
+
+      <div class="brappuilist__annotation">
+        <a href="https://k8t3w3m6.ssl.hwcdn.net/v6/11/12/list.html#"><span id="fd_problems_with_these_results">Gibt es Beanstandungen zu den Ergebnissen?</span></a>
+      </div>
+    </div>
+      <script src="./list-localization.js.téléchargement"></script>
+    <script src="./app.js.téléchargement"></script>
+    <script>
+        brappui.main.addEventListener(window, 'message', function(msg) {
+            var data = null;
+        
+				try {
+					data = JSON.parse(msg.data);
+				} catch(e){};
+
+				if (!data || !data.event) {
+				return;
+				}
+            var offers = '';
+
+            var getDelimiter = function(price) {
+                var del = ',';
+                var priceSplit = price.split(',');
+                if (/\./g.test(priceSplit[priceSplit.length - 1])) {
+                    del = '.';
+                }
+                return del;
+            };
+            var html = document.documentElement;
+			if (data.event === 'getOffersListHeight') {
+			
+				var iframeHeight = html.offsetHeight;
+
+				if (iframeHeight > 320) {
+					iframeHeight = 320;
+            }	
+
+				brappui.main.fireEvent('setOffersListHeight', {
+					height: iframeHeight
+            });
+			    return;
+			}
+
+            for (var i = 0; i < data.offers.length; i++) {
+
+                var offer = data.offers[i];
+                var delimiter = getDelimiter(offer.product_price_display);
+
+                if (offer.product_savings_percentage > 0) {
+                    offer.discountString = offer.product_savings_percentage_display + '%';
+                    //offer.discountString = offer.discountString.replace('.', delimiter);
+                    offer.saveString = userLanguage.save;
+                    offer.color = 'green';
+                } else if (offer.product_savings_percentage < 0) {
+                    offer.discountString = '+' + -1 * offer.product_savings_percentage_display + '%';
+                    //offer.discountString = offer.discountString.replace('.', delimiter);
+                    offer.saveString = '';
+                    offer.color = 'grey';
+                } else {
+                    offer.discountString = '';
+                    offer.saveString = userLanguage.same_price;
+                    offer.product_savings_percentage = true;
+                    offer.color = 'grey';
+                }
+                offers += brappui.ui.listItemTemplate(offer);
+            }
+
+            document.querySelector('.brappuilist__items').innerHTML = offers;
+
+
+        
+            document.querySelector('#fd_problems_with_these_results').textContent = userLanguage.problems_with_these_results;
+        });
+    </script>
+  
+
+</body></html>

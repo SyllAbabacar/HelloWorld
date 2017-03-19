@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)http://m-gut.developpez.com/tutoriels/php/mail-confirmation/ -->
+<html lang="fr" xmlns:og="http://ogp.me/ns#"><script type="text/javascript" async="" src="./Mail de confirmation en PHP_files/ga.js.téléchargement"></script><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	
+	<title>Mail de confirmation en PHP</title>
+	<meta name="generator" content="developpez-com">
+	<meta name="description" content="Création d&#39;un mail de confirmation en PHP">
+	<script type="text/javascript" src="./Mail de confirmation en PHP_files/jquery-1.7.2.js.téléchargement"></script>
+	<script async="" type="text/javascript" src="http://www.developpez.com/ws/pageview/"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="http://m-gut.developpez.com/template/favicon.ico">
+	<link rel="image_src" href="http://www.developpez.com/facebook-icon.png">
+	<link rel="stylesheet" type="text/css" href="./Mail de confirmation en PHP_files/gabarit.css">
+	<link rel="stylesheet" type="text/css" media="print" href="./Mail de confirmation en PHP_files/printer.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="./Mail de confirmation en PHP_files/developpez-kit-generation.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="./Mail de confirmation en PHP_files/code.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="./Mail de confirmation en PHP_files/lightbox.2.51.css">
+	<script type="text/javascript" src="./Mail de confirmation en PHP_files/developpez-kit-generation.js.téléchargement"></script>
+	<script type="text/javascript" src="./Mail de confirmation en PHP_files/lightbox.2.51.js.téléchargement"></script>
+	<script type="text/javascript" src="./Mail de confirmation en PHP_files/fonctions-kit.js.téléchargement"></script>
+	<meta name="author" content="MathieuGut">
+	<!--[if lt IE 7]>
+	<script src="/template/ie7/IE7.js" type="text/javascript"></script>
+	<![endif]-->
+
+	<!--[if IE 6]>
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-ie6.css" />
+	<![endif]-->
+
+	<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-ie7.css" />
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="/template/kit/html5_ie.js"></script>
+	<![endif]-->
+	<!--[if IE 9]><link rel="stylesheet" type="text/css" href="http://www.developpez.com/template/kit/ie9.css" /><![endif]-->
+	<!--[if IE 8]><link rel="stylesheet" type="text/css" href="http://www.developpez.com/template/kit/ie8.css" /><![endif]-->
+	<!--[if lt IE 9]><link rel="stylesheet" type="text/css" href="http://www.developpez.com/template/kit/ie.css" /><![endif]-->
+	<!--[if IE 7]><link rel="stylesheet" type="text/css" href="http://www.developpez.com/template/kit/ie7.css" /><![endif]-->
+	<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="http://www.developpez.com/template/kit/ie6.css" /><![endif]-->
+	<!--[if lt IE 9]><script type="text/javascript" src="http://www.developpez.com/template/kit/html5_ie.js"></script><![endif]-->
+
+<script src="./Mail de confirmation en PHP_files/secureAnonymousFramework"></script><style type="text/css">* html #li_ui_li_gen_1485357325774_0 a#li_ui_li_gen_1485357325774_0-link{height:1% !important;}#li_ui_li_gen_1485357325774_0{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1485357325774_0 span{-webkit-box-sizing:content-box !important;-moz-box-sizing:content-box !important;box-sizing:content-box !important;}#li_ui_li_gen_1485357325774_0 a#li_ui_li_gen_1485357325774_0-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1485357325774_0 a#li_ui_li_gen_1485357325774_0-link:link, #li_ui_li_gen_1485357325774_0 a#li_ui_li_gen_1485357325774_0-link:visited, #li_ui_li_gen_1485357325774_0 a#li_ui_li_gen_1485357325774_0-link:hover, #li_ui_li_gen_1485357325774_0 a#li_ui_li_gen_1485357325774_0-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1485357325774_0 a#li_ui_li_gen_1485357325774_0-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1485357325774_0 #li_ui_li_gen_1485357325774_0-logo{background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-position:0px -593px !important;background-repeat:no-repeat !important;background-color:#0077b5 !important;background-size:initial !important;cursor:pointer !important;border:0 !important;border-right:1px solid #066094 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;border-radius:2px !important;-webkit-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;}#li_ui_li_gen_1485357325774_0 #li_ui_li_gen_1485357325774_0-title{color:#fff !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;text-shadow:0 -1px #005887 !important;line-height:20px !important;border-radius:2px !important;-webkit-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;background-color:#0077b5 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#0077b5), color-stop(100%,#0077b5)) !important; background-image: -webkit-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}#li_ui_li_gen_1485357325774_0.hovered #li_ui_li_gen_1485357325774_0-title{border:1px solid #000 !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#0369a0), color-stop(100%,#0369a0)) !important; background-image: -webkit-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}#li_ui_li_gen_1485357325774_0.clicked #li_ui_li_gen_1485357325774_0-title, #li_ui_li_gen_1485357325774_0.down #li_ui_li_gen_1485357325774_0-title{color:#fff !important;border:1px solid #000 !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#066094), color-stop(100%,#066094)) !important; background-image: -webkit-linear-gradient(top, #066094 0%, #066094 100%) !important;}.IN-shadowed #li_ui_li_gen_1485357325774_0 #li_ui_li_gen_1485357325774_0-title{}.IN-shadowed #li_ui_li_gen_1485357325774_0.hovered #li_ui_li_gen_1485357325774_0-title{}.IN-shadowed #li_ui_li_gen_1485357325774_0.clicked #li_ui_li_gen_1485357325774_0-title, .IN-shadowed #li_ui_li_gen_1485357325774_0.down #li_ui_li_gen_1485357325774_0-title{}#li_ui_li_gen_1485357325774_0 #li_ui_li_gen_1485357325774_0-title-text, #li_ui_li_gen_1485357325774_0 #li_ui_li_gen_1485357325774_0-title-text *{color:#fff !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;-webkit-font-smoothing:antialiased !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1485357325774_0 #li_ui_li_gen_1485357325774_0-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1485357325774_0 #li_ui_li_gen_1485357325774_0-title-text em{font-style:italic !important;}#li_ui_li_gen_1485357325774_0.hovered #li_ui_li_gen_1485357325774_0-title-text, #li_ui_li_gen_1485357325774_0.hovered #li_ui_li_gen_1485357325774_0-title-text *{color:#fff !important;}#li_ui_li_gen_1485357325774_0.clicked #li_ui_li_gen_1485357325774_0-title-text, #li_ui_li_gen_1485357325774_0.down #li_ui_li_gen_1485357325774_0-title-text, #li_ui_li_gen_1485357325774_0.clicked #li_ui_li_gen_1485357325774_0-title-text *, #li_ui_li_gen_1485357325774_0.down #li_ui_li_gen_1485357325774_0-title-text *{color:#fff !important;}#li_ui_li_gen_1485357325774_0 #li_ui_li_gen_1485357325774_0-title #li_ui_li_gen_1485357325774_0-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1485357325774_0 #li_ui_li_gen_1485357325774_0-title{color:#fff !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;background-color:#0077b5 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#0077b5), color-stop(100%,#0077b5)) !important; background-image: -webkit-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}.success #li_ui_li_gen_1485357325774_0 #li_ui_li_gen_1485357325774_0-title-text, .success #li_ui_li_gen_1485357325774_0 #li_ui_li_gen_1485357325774_0-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1485357325774_0 #li_ui_li_gen_1485357325774_0-title{}.success #li_ui_li_gen_1485357325774_0.hovered #li_ui_li_gen_1485357325774_0-title{color:#fff !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#0369a0), color-stop(100%,#0369a0)) !important; background-image: -webkit-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}.success #li_ui_li_gen_1485357325774_0.hovered #li_ui_li_gen_1485357325774_0-title-text, .success #li_ui_li_gen_1485357325774_0.hovered #li_ui_li_gen_1485357325774_0-title-text *{color:#fff !important;}.success #li_ui_li_gen_1485357325774_0.clicked #li_ui_li_gen_1485357325774_0-title, .success #li_ui_li_gen_1485357325774_0.down #li_ui_li_gen_1485357325774_0-title{color:#fff !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#066094), color-stop(100%,#066094)) !important; background-image: -webkit-linear-gradient(top, #066094 0%, #066094 100%) !important;}.success #li_ui_li_gen_1485357325774_0.clicked #li_ui_li_gen_1485357325774_0-title-text, .success #li_ui_li_gen_1485357325774_0.down #li_ui_li_gen_1485357325774_0-title-text, .success #li_ui_li_gen_1485357325774_0.clicked #li_ui_li_gen_1485357325774_0-title-text *, .success #li_ui_li_gen_1485357325774_0.down #li_ui_li_gen_1485357325774_0-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1485357325774_0.clicked #li_ui_li_gen_1485357325774_0-title, .IN-shadowed .success #li_ui_li_gen_1485357325774_0.down #li_ui_li_gen_1485357325774_0-title{}</style><script src="./Mail de confirmation en PHP_files/atk.js.téléchargement"></script></head>
+<body>
+<header>
+
+<div id="gabarit_recherche">
+<form action="https://www.google.fr/" target="_blank">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-8110924381468607:6449306375">
+    <input type="hidden" name="ie" value="UTF-8">
+    <input type="text" name="q" size="12">
+    <input type="submit" name="sa" value="Rechercher">
+  </div>
+</form>
+</div>
+
+<div id="gabarit_superieur">
+	<nav>
+	<ul>
+		<li><a href="http://www.developpez.net/forums/" title="">Forums</a></li>
+		<li><a href="http://general.developpez.com/cours/" title="">Tutoriels</a></li>
+		<li><a href="http://magazine.developpez.com/" title="">Magazine</a></li>
+		<li><a href="http://general.developpez.com/faq/" title="">FAQs</a></li>
+		<li><a href="http://www.developpez.net/forums/blogs/" title="">Blogs</a></li>
+		<li><a href="http://chat.developpez.com/" title="">Chat</a></li>
+		<li><a href="http://www.developpez.com/newsletter/">Newsletter</a></li>
+		<li><a href="http://etudes.developpez.com/">Études</a></li>
+		<li><a href="http://emploi.developpez.com/" title="">Emploi</a></li>
+		<li><a href="http://club.developpez.com/">Club</a></li>
+		<li><a href="http://club.developpez.com/contacts/" title="">Contacts</a></li>
+	</ul>
+	</nav>
+</div>
+<div style="position: relative; clear: both; float: right; top: -2px; width: 745px; margin-top: 10px; margin-right: 5px; background-color: #E1E1E2">
+<div id="gabarit_pub0"></div><iframe width="728" height="90" style="border: 0" scrolling="no" src="./Mail de confirmation en PHP_files/offres.html"></iframe><style type="text/css"> #gabarit_pub0 { display: inline-block; background-position: 6px 0; }</style>
+</div>
+
+<div id="gabarit_logo">
+	<a href="http://www.developpez.com/" title="Accueil Developpez.com"><img src="./Mail de confirmation en PHP_files/logo.png" alt="" width="216" height="89"></a>
+</div>
+
+<nav>
+
+<div id="gabarit_mobile">
+	<img src="./Mail de confirmation en PHP_files/logo-mobile.png" alt="" width="65" height="72">
+	<div>Developpez.com - <strong>PHP</strong></div>
+	<ul>
+		<li><a href="https://www.developpez.net/forums/f443/php/">Forums</a></li>
+		<li><span>Autre rubrique</span></li>
+	</ul>
+</div>
+
+<div id="gabarit_menu_mobile">
+	<div>X</div>
+	<p>Choisissez <span>d'abord la catégorie</span><span>ensuite la rubrique</span> :</p>
+	<ul><li></li></ul>
+</div>
+
+<ul id="gabarit_menu">
+	<li><a href="http://www.developpez.com/" data-idrub="1" data-niv="1">Accueil<span class="gabarit_tooltip">Actualités IT Pro</span></a>
+			</li>
+	<li><a href="http://alm.developpez.com/" data-idrub="42" data-niv="1">ALM<span class="gabarit_tooltip">Cycle de vie du logiciel</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="http://alm.developpez.com/" data-idrub="42" data-niv="2">ALM</a></li>
+				<li><a href="http://merise.developpez.com/" data-idrub="43" data-niv="2">Merise</a></li>
+				<li><a href="http://uml.developpez.com/" data-idrub="12" data-niv="2">UML</a></li>
+			</ul></li>
+	<li><a href="http://java.developpez.com/" data-idrub="4" data-niv="1">Java<span class="gabarit_tooltip">Plateforme et langage Java</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="http://java.developpez.com/" data-idrub="4" data-niv="2">Java</a></li>
+				<li><a href="http://javaweb.developpez.com/" data-idrub="97" data-niv="2">Java Web</a></li>
+				<li><a href="http://spring.developpez.com/" data-idrub="87" data-niv="2">Spring</a></li>
+				<li><a href="http://android.developpez.com/" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="http://eclipse.developpez.com/" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="http://netbeans.developpez.com/" data-idrub="66" data-niv="2">NetBeans</a></li>
+			</ul></li>
+	<li><a href="http://dotnet.developpez.com/" data-idrub="20" data-niv="1">.NET<span class="gabarit_tooltip">Microsoft Framework .NET</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="http://dotnet.developpez.com/" data-idrub="20" data-niv="2">Microsoft DotNET</a></li>
+				<li><a href="http://dotnet.developpez.com/visual-studio/" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="http://dotnet.developpez.com/aspnet/" data-idrub="83" data-niv="2">ASP.NET</a></li>
+				<li><a href="http://dotnet.developpez.com/csharp/" data-idrub="81" data-niv="2">C#</a></li>
+				<li><a href="http://dotnet.developpez.com/vbnet/" data-idrub="82" data-niv="2">VB.NET</a></li>
+				<li><a href="http://windowsphone.developpez.com/" data-idrub="105" data-niv="2">Windows Phone</a></li>
+				<li><a href="http://windows-azure.developpez.com/" data-idrub="107" data-niv="2">Microsoft Azure</a></li>
+			</ul></li>
+	<li><a href="http://web.developpez.com/" data-idrub="8" data-niv="1" class="gabarit_selection">Dév. Web<span class="gabarit_tooltip">Développement Web et Webmarketing</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="http://web.developpez.com/" data-idrub="8" data-niv="2">Développement Web</a></li>
+				<li><a href="http://ajax.developpez.com/" data-idrub="85" data-niv="2">AJAX</a></li>
+				<li><a href="http://apache.developpez.com/" data-idrub="71" data-niv="2">Apache</a></li>
+				<li><a href="http://asp.developpez.com/" data-idrub="10" data-niv="2">ASP</a></li>
+				<li><a href="http://css.developpez.com/" data-idrub="51" data-niv="2">CSS</a></li>
+				<li><a href="http://dart.developpez.com/" data-idrub="125" data-niv="2">Dart</a></li>
+				<li><a href="http://flash.developpez.com/" data-idrub="41" data-niv="2">Flash / Flex</a></li>
+				<li><a href="http://javascript.developpez.com/" data-idrub="45" data-niv="2">JavaScript</a></li>
+				<li><a href="http://php.developpez.com/" data-idrub="9" data-niv="2">PHP</a></li>
+				<li><a href="http://ruby.developpez.com/" data-idrub="53" data-niv="2">Ruby &amp; Rails</a></li>
+				<li><a href="http://typescript.developpez.com/" data-idrub="127" data-niv="2">TypeScript</a></li>
+				<li><a href="http://web-semantique.developpez.com/" data-idrub="111" data-niv="2">Web sémantique</a></li>
+				<li><a href="http://webmarketing.developpez.com/" data-idrub="80" data-niv="2">Webmarketing</a></li>
+				<li><a href="http://xhtml.developpez.com/" data-idrub="50" data-niv="2">(X)HTML</a></li>
+			</ul></li>
+	<li><a href="http://edi.developpez.com/" data-idrub="90" data-niv="1">EDI<span class="gabarit_tooltip">Environnements de Développement Intégré</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="http://edi.developpez.com/" data-idrub="90" data-niv="2">EDI</a></li>
+				<li><a href="http://4d.developpez.com/" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="http://delphi.developpez.com/" data-idrub="2" data-niv="2">Delphi</a></li>
+				<li><a href="http://eclipse.developpez.com/" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="http://labview.developpez.com/" data-idrub="72" data-niv="2">LabVIEW</a></li>
+				<li><a href="http://netbeans.developpez.com/" data-idrub="66" data-niv="2">NetBeans</a></li>
+				<li><a href="http://matlab.developpez.com/" data-idrub="58" data-niv="2">MATLAB</a></li>
+				<li><a href="http://scilab.developpez.com/" data-idrub="120" data-niv="2">Scilab</a></li>
+				<li><a href="http://dotnet.developpez.com/visual-studio/" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="http://wind.developpez.com/" data-idrub="74" data-niv="2">WinDev</a></li>
+				<li><a href="http://vb.developpez.com/" data-idrub="5" data-niv="2">Visual Basic 6</a></li>
+				<li><a href="http://lazarus.developpez.com/" data-idrub="96" data-niv="2">Lazarus</a></li>
+				<li><a href="http://qt-creator.developpez.com/" data-idrub="109" data-niv="2">Qt Creator</a></li>
+			</ul></li>
+	<li><a href="http://programmation.developpez.com/" data-idrub="119" data-niv="1">Programmation<span class="gabarit_tooltip">Programmation et langages de programmation applicatifs</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="http://programmation.developpez.com/" data-idrub="119" data-niv="2">Programmation</a></li>
+				<li><a href="http://algo.developpez.com/" data-idrub="47" data-niv="2">Débuter - Algorithmique</a></li>
+				<li><a href="http://jeux.developpez.com/" data-idrub="38" data-niv="2">2D - 3D - Jeux</a></li>
+				<li><a href="http://asm.developpez.com/" data-idrub="16" data-niv="2">Assembleur</a></li>
+				<li><a href="http://c.developpez.com/" data-idrub="3" data-niv="2">C</a></li>
+				<li><a href="http://cpp.developpez.com/" data-idrub="59" data-niv="2">C++</a></li>
+				<li><a href="http://go.developpez.com/" data-idrub="124" data-niv="2">Go</a></li>
+				<li><a href="http://objective-c.developpez.com/" data-idrub="117" data-niv="2">Objective C</a></li>
+				<li><a href="http://pascal.developpez.com/" data-idrub="7" data-niv="2">Pascal</a></li>
+				<li><a href="http://perl.developpez.com/" data-idrub="29" data-niv="2">Perl</a></li>
+				<li><a href="http://python.developpez.com/" data-idrub="27" data-niv="2">Python</a></li>
+				<li><a href="http://swift.developpez.com/" data-idrub="128" data-niv="2">Swift</a></li>
+				<li><a href="http://qt.developpez.com/" data-idrub="65" data-niv="2">Qt</a></li>
+				<li><a href="http://xml.developpez.com/" data-idrub="11" data-niv="2">XML</a></li>
+				<li><a href="http://general.developpez.com/cours/" data-idrub="21" data-niv="2">Autres</a></li>
+			</ul></li>
+	<li><a href="http://sgbd.developpez.com/" data-idrub="13" data-niv="1">SGBD<span class="gabarit_tooltip">Systèmes de Gestion de Bases de Données</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="http://sgbd.developpez.com/" data-idrub="13" data-niv="2">SGBD &amp; SQL</a></li>
+				<li><a href="http://4d.developpez.com/" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="http://access.developpez.com/" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="http://big-data.developpez.com/" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="http://db2.developpez.com/" data-idrub="36" data-niv="2">DB2</a></li>
+				<li><a href="http://firebird.developpez.com/" data-idrub="73" data-niv="2">Firebird</a></li>
+				<li><a href="http://interbase.developpez.com/" data-idrub="32" data-niv="2">InterBase</a></li>
+				<li><a href="http://mysql.developpez.com/" data-idrub="31" data-niv="2">MySQL</a></li>
+				<li><a href="http://nosql.developpez.com/" data-idrub="114" data-niv="2">NoSQL</a></li>
+				<li><a href="http://postgresql.developpez.com/" data-idrub="33" data-niv="2">PostgreSQL</a></li>
+				<li><a href="http://oracle.developpez.com/" data-idrub="25" data-niv="2">Oracle</a></li>
+				<li><a href="http://sybase.developpez.com/" data-idrub="37" data-niv="2">Sybase</a></li>
+				<li><a href="http://sqlserver.developpez.com/" data-idrub="34" data-niv="2">SQL-Server</a></li>
+			</ul></li>
+	<li><a href="http://office.developpez.com/" data-idrub="54" data-niv="1">Office<span class="gabarit_tooltip">Bureautique pour l'entreprise</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="http://office.developpez.com/" data-idrub="54" data-niv="2">Microsoft Office</a></li>
+				<li><a href="http://access.developpez.com/" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="http://excel.developpez.com/" data-idrub="75" data-niv="2">Excel</a></li>
+				<li><a href="http://word.developpez.com/" data-idrub="76" data-niv="2">Word</a></li>
+				<li><a href="http://outlook.developpez.com/" data-idrub="77" data-niv="2">Outlook</a></li>
+				<li><a href="http://powerpoint.developpez.com/" data-idrub="78" data-niv="2">PowerPoint</a></li>
+				<li><a href="http://sharepoint.developpez.com/" data-idrub="79" data-niv="2">SharePoint</a></li>
+				<li><a href="http://project.developpez.com/" data-idrub="99" data-niv="2">Microsoft Project</a></li>
+				<li><a href="http://openoffice-libreoffice.developpez.com/" data-idrub="116" data-niv="2">OpenOffice &amp; LibreOffice</a></li>
+			</ul></li>
+	<li><a href="http://solutions-entreprise.developpez.com/" data-idrub="86" data-niv="1">Solutions d'entreprise<span class="gabarit_tooltip">Autres logiciels pour l'entreprise</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="http://solutions-entreprise.developpez.com/" data-idrub="86" data-niv="2">Solutions d'entreprise</a></li>
+				<li><a href="http://big-data.developpez.com/" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="http://bpm.developpez.com/" data-idrub="134" data-niv="2">BPM</a></li>
+				<li><a href="http://business-intelligence.developpez.com/" data-idrub="61" data-niv="2">Business Intelligence</a></li>
+				<li><a href="http://solutions-entreprise.developpez.com/erp-pgi/presentation-erp-pgi/" data-idrub="91" data-niv="2">ERP / PGI</a></li>
+				<li><a href="http://crm.developpez.com/" data-idrub="92" data-niv="2">CRM</a></li>
+				<li><a href="http://sas.developpez.com/" data-idrub="93" data-niv="2">SAS</a></li>
+				<li><a href="http://cloud-computing.developpez.com/" data-idrub="103" data-niv="2">Cloud Computing</a></li>
+				<li><a href="http://sap.developpez.com/" data-idrub="106" data-niv="2">SAP</a></li>
+				<li><a href="http://www.developpez.net/forums/f1664/systemes/windows/windows-serveur/biztalk-server/" data-idrub="115" data-niv="2">Microsoft BizTalk Server</a></li>
+				<li><a href="http://talend.developpez.com/" data-idrub="118" data-niv="2">Talend</a></li>
+				<li><a href="http://bluemix.developpez.com/" data-idrub="135" data-niv="2">IBM Bluemix</a></li>
+			</ul></li>
+	<li><a href="http://applications.developpez.com/" data-idrub="88" data-niv="1">Applications<span class="gabarit_tooltip">Applications logicielles</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="http://applications.developpez.com/" data-idrub="88" data-niv="2">Applications</a></li>
+				<li><a href="http://open-source.developpez.com/" data-idrub="121" data-niv="2">Libres &amp; Open Source</a></li>
+				<li><a href="http://openoffice-libreoffice.developpez.com/" data-idrub="116" data-niv="2">OpenOffice &amp; LibreOffice</a></li>
+				<li><a href="http://portail-projets.developpez.com/" data-idrub="98" data-niv="2">Projets</a></li>
+			</ul></li>
+	<li><a href="http://mobiles.developpez.com/" data-idrub="94" data-niv="1">Mobiles<span class="gabarit_tooltip">Logiciels et matériels mobiles</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="http://mobiles.developpez.com/" data-idrub="94" data-niv="2">Mobiles</a></li>
+				<li><a href="http://android.developpez.com/" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="http://ios.developpez.com/" data-idrub="101" data-niv="2">iOS</a></li>
+				<li><a href="http://windowsphone.developpez.com/" data-idrub="105" data-niv="2">Windows Phone</a></li>
+			</ul></li>
+	<li><a href="http://systeme.developpez.com/" data-idrub="30" data-niv="1">Systèmes<span class="gabarit_tooltip">Logiciels et matériels systèmes</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="http://systeme.developpez.com/" data-idrub="30" data-niv="2">Systèmes</a></li>
+				<li><a href="http://windows.developpez.com/" data-idrub="17" data-niv="2">Windows</a></li>
+				<li><a href="http://linux.developpez.com/" data-idrub="18" data-niv="2">Linux</a></li>
+				<li><a href="http://securite.developpez.com/" data-idrub="40" data-niv="2">Sécurité</a></li>
+				<li><a href="http://hardware.developpez.com/" data-idrub="64" data-niv="2">Hardware</a></li>
+				<li><a href="http://mac.developpez.com/" data-idrub="57" data-niv="2">Mac</a></li>
+				<li><a href="http://raspberry-pi.developpez.com/" data-idrub="131" data-niv="2">Raspberry Pi</a></li>
+				<li><a href="http://reseau.developpez.com/" data-idrub="70" data-niv="2">Réseau</a></li>
+				<li><a href="http://green-it.developpez.com/" data-idrub="104" data-niv="2">Green IT</a></li>
+				<li><a href="http://embarque.developpez.com/" data-idrub="110" data-niv="2">Systèmes Embarqués</a></li>
+				<li><a href="http://virtualisation.developpez.com/" data-idrub="108" data-niv="2">Virtualisation</a></li>
+			</ul></li>
+</ul>
+
+<ul id="gabarit_barre1">
+	<li><a href="http://web.developpez.com/">Dév. Web</a></li>
+	<li><a href="http://ajax.developpez.com/">AJAX</a></li>
+	<li><a href="http://apache.developpez.com/">Apache</a></li>
+	<li><a href="http://asp.developpez.com/">ASP</a></li>
+	<li><a href="http://css.developpez.com/">CSS</a></li>
+	<li><a href="http://dart.developpez.com/">Dart</a></li>
+	<li><a href="http://flash.developpez.com/">Flash / Flex</a></li>
+	<li><a href="http://javascript.developpez.com/">JavaScript</a></li>
+	<li class="gabarit_selection"><a href="http://php.developpez.com/">PHP</a></li>
+	<li><a href="http://ruby.developpez.com/">Ruby</a></li>
+	<li><a href="http://typescript.developpez.com/">TypeScript</a></li>
+	<li><a href="http://web-semantique.developpez.com/">Web sémantique</a></li>
+	<li><a href="http://webmarketing.developpez.com/">Webmarketing</a></li>
+	<li><a href="http://xhtml.developpez.com/">(X)HTML</a></li>
+</ul>
+
+<div id="gabarit_barre2">
+	<a class="gabarit_social gabarit_facebook" href="http://www.facebook.com/pages/PHP/109797105707485" target="_blank" title="Retrouver Developpez sur Facebook"></a>
+	<a class="gabarit_social gabarit_twitter" href="http://twitter.com/php_DVP" target="_blank" title="Retrouver Developpez sur Twitter"></a>
+	<a class="gabarit_social gabarit_rss" href="http://php.developpez.com/index/rss" target="_blank" title="Flux RSS"></a>
+	<ul>
+		<li><a href="http://www.developpez.net/forums/f443/php/">Forum PHP</a></li>
+		<li><a href="http://php.developpez.com/faq/">FAQ PHP</a></li>
+		<li><a href="http://php.developpez.com/cours/">Cours PHP</a></li>
+		<li><a href="http://php.developpez.com/telecharger/index/categorie/18/Sources-PHP">Sources PHP</a></li>
+		<li><a href="http://php.developpez.com/livres/">Livres PHP</a></li>
+		<li><a href="http://php.developpez.com/scripts/">Scripts PHP</a></li>
+		<li><a href="http://php.developpez.com/telecharger/index/categorie/210/Outils-pour-PHP">Outils PHP</a></li>
+		<li><a href="http://symfony.developpez.com/">Symfony</a></li>
+		<li><a href="http://zend-framework.developpez.com/">Zend Framework</a></li>
+	</ul>
+</div>
+
+</nav>
+</header>
+<section>
+
+<div class="contenuPage">		<article class="ArticleComplet" itemscope="" itemtype="http://schema.org/Article" style="margin: 0px 20px;">
+<meta itemprop="genre" content="informatique">
+<meta itemprop="inLanguage" content="fr-FR">
+		
+<header class="EnteteTitres">
+<h1 class="titre-article" itemprop="name">Création d'un mail de confirmation en PHP</h1>
+
+</header><nav class="nav-sommaire fixed2" role="navigation" style="width: 311px;">
+<header><h1 class="TitreHeader StopArrondi ToggleGecko">Table des matières<img class="ToggleImgPlier" title="Plier" alt="Plier" src="./Mail de confirmation en PHP_files/fleche-haut-bleue.gif"><img class="ToggleImgDeplier" title="Déplier" alt="Déplier" src="./Mail de confirmation en PHP_files/fleche-bas-bleue.gif" style="display:none;"></h1></header>
+<ul id="nav_sommaire_ul_principal" class="nav-sommaire-ul" style="overflow-y: auto;">
+    <li><a class="summaryIndent0" href="http://m-gut.developpez.com/tutoriels/php/mail-confirmation/#L0">1.Problématique</a></li>
+    <li><a class="summaryIndent0" href="http://m-gut.developpez.com/tutoriels/php/mail-confirmation/#L1">2.Enjeux et choix techniques</a></li>
+    <li><a class="summaryIndent0" href="http://m-gut.developpez.com/tutoriels/php/mail-confirmation/#L2">3.Code</a></li>
+    <li><a class="summaryIndent0" href="http://m-gut.developpez.com/tutoriels/php/mail-confirmation/#L3">4.Conclusion</a></li>
+    <li><a class="summaryIndent0" href="http://m-gut.developpez.com/tutoriels/php/mail-confirmation/#L4">5.Remerciements</a></li>
+  </ul></nav>
+
+
+<div class="fixeMarge"><section itemprop="about" class="SectionSynopsis">
+    <p>
+			À l'heure où les inscriptions robots sont de plus en plus fréquentes et où il est difficile de distinguer un utilisateur réel d'un utilisateur factice,
+			la création d'un mail de confirmation permet de diminuer considérablement les inscriptions indésirables...<br>
+			Complexité de l'article : <span class="mot_souligne">Débutant</span> (Bases requises : PHP/MySQL)
+		</p>
+  
+ 
+		
+	<p class="TextNbrVues">Article lu <span id="NbrVues">&nbsp;</span> fois.</p></section></div><div class="InfoAuthArtBook" style="height: 133px;">
+	<section class="SectionAuteurs">
+	<header><h1 class="TitreHeader">L'auteur</h1></header>
+<p class="auteur" itemprop="author" itemscope="" itemtype="http://schema.org/Person"><a itemprop="url" class="auteur" href="http://www.developpez.net/forums/member.php?u=225148"><span itemprop="author">MathieuGut</span></a><a class="homepage" href="http://m-gut.developpez.com/"><img src="./Mail de confirmation en PHP_files/kitbm-site-personnel.png" title="autres articles" alt="Site personnel" style="vertical-align:middle;"></a></p>
+</section>
+<section class="SectionInformationArticle">
+<header><h1 class="TitreHeader">L'article</h1></header>
+
+<p class="InfoArticle">Publié&nbsp;le&nbsp;<span itemprop="datePublished">6&nbsp;avril&nbsp;2008&nbsp;</span></p><p>
+<span class="lientelechargementpdf"><a class="lientelechargement" href="http://m-gut.developpez.com/tutoriels/php/mail-confirmation/mail_confirmation.pdf" title="Télécharger la version PDF de cet article.">Version PDF</a></span>
+<span class="lientelechargementzip"><a class="lientelechargement" href="http://m-gut.developpez.com/tutoriels/php/mail-confirmation/mail_confirmation.zip" title="Télécharger la version HTML de cet article.">Version hors-ligne</a></span></p>
+<p><span class="lientelechargementebook"><a class="lientelechargement" href="http://m-gut.developpez.com/tutoriels/php/mail-confirmation/mail_confirmation.epub" title="Télécharger la version ePub de l&#39;article compatible avec la plupart des liseuses non Kindle (Amazon).">ePub</a></span>, <span class="lientelechargementebook"><a class="lientelechargement" href="http://m-gut.developpez.com/tutoriels/php/mail-confirmation/mail_confirmation.azw" title="Télécharger la version Azw spécifique aux liseuses Kindle (Amazon).">Azw</a></span> et <span class="lientelechargementebook"><a class="lientelechargement" href="http://m-gut.developpez.com/tutoriels/php/mail-confirmation/mail_confirmation.mobi" title="Télécharger la version Mobi de l&#39;article compatible avec les liseuses Amazon.">Mobi</a></span></p>
+</section>
+<section class="SectionBookmarks">
+<header><h1 class="TitreHeader">Liens&nbsp;sociaux</h1></header>
+<div class="InfoBookmarks"><a title="Viadeo" href="http://www.viadeo.com/shareit/share/?url=http%3A%2F%2Fm-gut.developpez.com%2Ftutoriels%2Fphp%2Fmail-confirmation%2F&amp;Title=Cr%C3%A9ation+d%27un+mail+de+confirmation+en+PHP" rel="nofollow"><img alt="Viadeo" src="./Mail de confirmation en PHP_files/kitbm-viadeo.png"></a>&nbsp;<a title="Twitter" href="http://twitter.com/timeline/home?status=http%3A%2F%2Fm-gut.developpez.com%2Ftutoriels%2Fphp%2Fmail-confirmation%2F" rel="nofollow"><img alt="Twitter" src="./Mail de confirmation en PHP_files/kitbm-twitter.png"></a>&nbsp;<a title="Facebook" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fm-gut.developpez.com%2Ftutoriels%2Fphp%2Fmail-confirmation%2F" rel="nofollow"><img alt="Facebook" src="./Mail de confirmation en PHP_files/kitbm-facebook.png"></a>&nbsp;<a title="Google +" href="https://plus.google.com/share?url=http%3A%2F%2Fm-gut.developpez.com%2Ftutoriels%2Fphp%2Fmail-confirmation%2F" onclick="javascript:window.open(this.href, &#39;&#39;, &#39;menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600&#39;);return false;"><img src="./Mail de confirmation en PHP_files/gplus-16.png" alt="Share on Google+"></a>&nbsp;<script src="./Mail de confirmation en PHP_files/in.js.téléchargement" type="text/javascript"> lang: fr_FR</script>
+			<span class="IN-widget" style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1485357325774_0"><a id="li_ui_li_gen_1485357325774_0-link" href="javascript:void(0);"><span id="li_ui_li_gen_1485357325774_0-logo">in</span><span id="li_ui_li_gen_1485357325774_0-title"><span id="li_ui_li_gen_1485357325774_0-mark"></span><span id="li_ui_li_gen_1485357325774_0-title-text">Partager</span></span></a></span></span></span><script type="IN/Share+init" data-url="$url"></script>&nbsp;</div>
+</section></div><section itemprop="articleBody" class="articleBody" style="margin-left: 336px; margin-top: 20px; clear: none;">
+    
+		<h1 class="TitreSection0" id="L0">1.Problématique<a class="HautPage" href="http://m-gut.developpez.com/tutoriels/php/mail-confirmation/#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0"><p>
+				Face à un phénomène grandissant qui est celui des inscriptions automatiques et autres multi-comptes, un des systèmes les plus
+				efficaces reste à ce jour la confirmation par mail.<br> Vous savez, c'est le genre de message que l'on reçoit pour activer notre compte après une inscription sur un 
+				forum, site, jeu...<br><br>
+				Pour lutter contre se fléau, nous allons créer un petit module qui enverra automatiquement un mail lors de la validation du formulaire d'inscription.
+				Ce mail contiendra alors la procédure à suivre (un lien internet) pour finaliser l'inscription du nouveau compte.
+ 
+				</p><p class="imgtext-info">Cet article part sur le principe que vous possédez une <a href="http://dico.developpez.com/html/137-Generalites-base-de-donnees.php" class="lienArticle lienDico" title="Dictionnaire des développeurs">Base de Données (BDD)</a> et que vous maîtrisez sa gestion.<br>
+				Dans cet article, PDO sera le système pour gérer les relations avec la base de données.</p>		</div>
+    
+		<h1 class="TitreSection0" id="L1">2.Enjeux et choix techniques<a class="HautPage" href="http://m-gut.developpez.com/tutoriels/php/mail-confirmation/#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>
+				Cet article s'adresse principalement aux Webmasters désireux de limiter les inscriptions factices et par conséquent
+				diminuer le temps perdu à la maintenance et à la vérification de validité des données...
+				<br><br></p>
+      <div class="titreliste">Avant de commencer, il nous faut quelques petits équipements :</div><ul class="ListeDVP">
+        <li>La fonction <a class="lienArticle simple" href="http://fr.php.net/mail">Mail()</a> pour l'envoi du Mail.</li>
+        <li><a class="lienArticle simple" href="http://fr.php.net/pdo">L'extension PDO</a> pour les relations avec la base de données.</li>
+        <li>Une page validation.php (à créer).</li>
+      </ul>
+      <div class="titreliste">En premier lieu et avant de faire quoi que ce soit, il nous faut rajouter deux champs à notre table "membres" :</div><ul class="ListeDVP">
+        <li>Le champ <span class="mot_souligne"><i>cle</i></span> de type <i>varchar</i> de taille 32 ; contiendra la clé de vérification pour l'activation du compte.</li>
+        <li>Le champ <span class="mot_souligne"><i>actif</i></span> de type <i>integer</i> (INT ou ENTIER) ; prendra la valeur 0 d'origine et permettra de savoir si un compte est actif.</li>
+      </ul>
+      <p>
+				Une fois nos champs ajoutés, nous n'auront plus besoin de modifier la structure de la table <i>membres</i>.<br><br>
+				Voici les tâches que l'on va accomplir pour la conception de ce module ;<br><br></p>
+      <div class="titreliste">Premier Temps (Ajouts à apporter sur votre page de validation de l'inscription) :</div><ol type="I">
+        <li>Récupération du login et de l'adresse mail du prétendant.</li>
+        <li>Génération aléatoire d'une clé et stockage de celle-ci dans la base de données.</li>
+        <li>Envoi du mail contenant la procédure à suivre pour l'activation.</li>
+        <li>Avertissement à l'utilisateur qu'un mail vient de lui être envoyé pour confirmer son inscription.</li>
+      </ol>
+      <p>
+        <i>Réception du mail...</i>
+        <br>
+      </p>
+      <div class="titreliste">Second Temps (Sur votre nouvelle page validation.php) :</div><ol type="I">
+        <li>Récupération de la clé correspondant au login provenant du lien du mail.</li>
+        <li>Comparaison de la clé de la base de données avec celle provenant du lien du mail.</li>
+        <li>Modification de la valeur du champ <i>actif</i> dans la base de données.</li>
+        <li>Avertissement à l'utilisateur sur l'état de l'activation de son compte.</li>
+      </ol>
+      <div class="titreliste">Dernier Temps (Sur votre page de connexion par exemple) :</div><ol type="I">
+        <li>Récupération de la valeur du champ <i>actif</i> dans la BDD pour le login correspondant à la demande de connexion.</li>
+        <li>Vérification de son état (0 ou 1).</li>
+        <li>Autorise ou pas la connexion du membre en fonction de l'état du champ <i>actif</i>.</li>
+      </ol>
+      <p><br><br>
+				Pour comprendre plus en détail les opérations citées ci-dessus, les codes suivants seront commentés.
+				</p>
+    </div>
+    
+		<h1 class="TitreSection0" id="L2">3.Code<a class="HautPage" href="http://m-gut.developpez.com/tutoriels/php/mail-confirmation/#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>
+		Les codes présentés ci-dessous sont à titre d'exemples. Pour éviter toute erreur, ils ne doivent pas être <i>Copiés/Collés</i>.
+		À vous d'adapter les exemples à votre situation...
+		</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e242">I. Ajouts à apporter sur votre page de validation de l'inscription (exemple : inscriptionvalid.php)<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e242" onclick="selectionCode(&#39;contenuCoded0e242&#39;);">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e242" class="contenuCode"><code class="php_label">&lt;?php</code>
+ 
+<code class="php_comment2">//</code><code class="php_comment2">...</code>
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Votre</code><code class="php_comment2"> </code><code class="php_comment2">code</code>
+<code class="php_comment2">//</code><code class="php_comment2">...</code>
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Connexion</code><code class="php_comment2"> </code><code class="php_comment2">à</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">base</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">données</code>
+<code class="php_comment2">//</code><code class="php_comment2">...</code>
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Vérification</code><code class="php_comment2"> </code><code class="php_comment2">des</code><code class="php_comment2"> </code><code class="php_comment2">données</code><code class="php_comment2"> </code><code class="php_comment2">saisies</code><code class="php_comment2"> </code><code class="php_comment2">par</code><code class="php_comment2"> </code><code class="php_comment2">l'utilisateur</code>
+<code class="php_comment2">//</code><code class="php_comment2">...</code>
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Enregistrement</code><code class="php_comment2"> </code><code class="php_comment2">des</code><code class="php_comment2"> </code><code class="php_comment2">données</code><code class="php_comment2"> </code><code class="php_comment2">dans</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">base</code>
+<code class="php_comment2">//</code><code class="php_comment2">...</code><code class="php_comment2">	</code>
+ 
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Récupération</code><code class="php_comment2"> </code><code class="php_comment2">des</code><code class="php_comment2"> </code><code class="php_comment2">variables</code><code class="php_comment2"> </code><code class="php_comment2">nécessaires</code><code class="php_comment2"> </code><code class="php_comment2">au</code><code class="php_comment2"> </code><code class="php_comment2">mail</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">confirmation</code><code class="php_comment2">	</code>
+<code class="php_keyword3">$</code><code class="php_keyword3">email</code> <code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">_POST</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">email</code><code class="php_literal1">'</code><code class="php_operator">]</code><code class="php_operator">;</code>
+<code class="php_keyword3">$</code><code class="php_keyword3">login</code> <code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">_POST</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">login</code><code class="php_literal1">'</code><code class="php_operator">]</code><code class="php_operator">;</code>
+ 
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Génération</code><code class="php_comment2"> </code><code class="php_comment2">aléatoire</code><code class="php_comment2"> </code><code class="php_comment2">d'une</code><code class="php_comment2"> </code><code class="php_comment2">clé</code>
+<code class="php_keyword3">$</code><code class="php_keyword3">cle</code> <code class="php_operator">=</code> <a class="php_function lien_documentation_code" target="_blank" href="http://www.php.net/manual/fr/function.md5.php"><span class="php_function">md5</span></a>(<a class="php_function lien_documentation_code" target="_blank" href="http://www.php.net/manual/fr/function.microtime.php"><span class="php_function">microtime</span></a>(<a class="php_keyword1 lien_documentation_code" target="_blank" href="http://www.php.net/manual-lookup.php?pattern=true&amp;lang=fr&amp;scope=quickref"><span>TRUE</span></a>)<code class="php_operator">*</code><code class="php_digit">100000</code>)<code class="php_operator">;</code>
+ 
+ 
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Insertion</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">clé</code><code class="php_comment2"> </code><code class="php_comment2">dans</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">base</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">données</code><code class="php_comment2"> </code><code class="php_comment2">(à</code><code class="php_comment2"> </code><code class="php_comment2">adapter</code><code class="php_comment2"> </code><code class="php_comment2">en</code><code class="php_comment2"> </code><code class="php_comment2">INSERT</code><code class="php_comment2"> </code><code class="php_comment2">si</code><code class="php_comment2"> </code><code class="php_comment2">besoin)</code>
+<code class="php_keyword3">$</code><code class="php_keyword3">stmt</code> <code class="php_operator">=</code> <code class="php_keyword4">$dbh</code><code class="php_operator">-&gt;prepare</code>(<code class="php_literal1">"</code><code class="php_literal1">UPDATE</code><code class="php_literal1"> </code><code class="php_literal1">membres</code><code class="php_literal1"> </code><code class="php_literal1">SET</code><code class="php_literal1"> </code><code class="php_literal1">cle</code><code class="php_literal1">=</code><code class="php_literal1">:</code><code class="php_literal1">cle</code><code class="php_literal1"> </code><code class="php_literal1">WHERE</code><code class="php_literal1"> </code><code class="php_literal1">login</code><code class="php_literal1"> </code><code class="php_literal1">like</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">login</code><code class="php_literal1">"</code>)<code class="php_operator">;</code>
+<code class="php_keyword4">$stmt</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:cle</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">cle</code>)<code class="php_operator">;</code>
+<code class="php_keyword4">$stmt</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:login</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">login</code>)<code class="php_operator">;</code>
+<code class="php_keyword4">$stmt</code><code class="php_operator">-&gt;execute</code>()<code class="php_operator">;</code>
+ 
+ 
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Préparation</code><code class="php_comment2"> </code><code class="php_comment2">du</code><code class="php_comment2"> </code><code class="php_comment2">mail</code><code class="php_comment2"> </code><code class="php_comment2">contenant</code><code class="php_comment2"> </code><code class="php_comment2">le</code><code class="php_comment2"> </code><code class="php_comment2">lien</code><code class="php_comment2"> </code><code class="php_comment2">d'activation</code>
+<code class="php_keyword3">$</code><code class="php_keyword3">destinataire</code> <code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">email</code><code class="php_operator">;</code>
+<code class="php_keyword3">$</code><code class="php_keyword3">sujet</code> <code class="php_operator">=</code> <code class="php_literal1">"</code><code class="php_literal1">Activer</code><code class="php_literal1"> </code><code class="php_literal1">votre</code><code class="php_literal1"> </code><code class="php_literal1">compte</code><code class="php_literal1">"</code> <code class="php_operator">;</code>
+<code class="php_keyword3">$</code><code class="php_keyword3">entete</code> <code class="php_operator">=</code> <code class="php_literal1">"</code><code class="php_literal1">From</code><code class="php_literal1">:</code><code class="php_literal1"> </code><code class="php_literal1">inscription</code><code class="php_literal1">@</code><code class="php_literal1">votresite</code><code class="php_literal1">.</code><code class="php_literal1">com</code><code class="php_literal1">"</code> <code class="php_operator">;</code>
+ 
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Le</code><code class="php_comment2"> </code><code class="php_comment2">lien</code><code class="php_comment2"> </code><code class="php_comment2">d'activation</code><code class="php_comment2"> </code><code class="php_comment2">est</code><code class="php_comment2"> </code><code class="php_comment2">composé</code><code class="php_comment2"> </code><code class="php_comment2">du</code><code class="php_comment2"> </code><code class="php_comment2">login(log)</code><code class="php_comment2"> </code><code class="php_comment2">et</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">clé(cle)</code>
+<code class="php_keyword3">$</code><code class="php_keyword3">message</code> <code class="php_operator">=</code> <code class="php_literal1">'</code><code class="php_literal1">Bienvenue</code><code class="php_literal1"> </code><code class="php_literal1">sur</code><code class="php_literal1"> </code><code class="php_literal1">VotreSite,</code>
+<code class="php_literal1"> </code>
+<code class="php_literal1">Pour</code><code class="php_literal1"> </code><code class="php_literal1">activer</code><code class="php_literal1"> </code><code class="php_literal1">votre</code><code class="php_literal1"> </code><code class="php_literal1">compte,</code><code class="php_literal1"> </code><code class="php_literal1">veuillez</code><code class="php_literal1"> </code><code class="php_literal1">cliquer</code><code class="php_literal1"> </code><code class="php_literal1">sur</code><code class="php_literal1"> </code><code class="php_literal1">le</code><code class="php_literal1"> </code><code class="php_literal1">lien</code><code class="php_literal1"> </code><code class="php_literal1">ci</code><code class="php_literal1"> </code><code class="php_literal1">dessous</code>
+<code class="php_literal1">ou</code><code class="php_literal1"> </code><code class="php_literal1">copier/coller</code><code class="php_literal1"> </code><code class="php_literal1">dans</code><code class="php_literal1"> </code><code class="php_literal1">votre</code><code class="php_literal1"> </code><code class="php_literal1">navigateur</code><code class="php_literal1"> </code><code class="php_literal1">internet.</code>
+<code class="php_literal1"> </code>
+<code class="php_literal1">http://votresite.com/activation.php?log=</code><code class="php_literal1">'</code><code class="php_operator">.</code><a class="php_function lien_documentation_code" target="_blank" href="http://www.php.net/manual/fr/function.urlencode.php"><span class="php_function">urlencode</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">login</code>)<code class="php_operator">.</code><code class="php_literal1">'</code><code class="php_literal1">&amp;cle=</code><code class="php_literal1">'</code><code class="php_operator">.</code><a class="php_function lien_documentation_code" target="_blank" href="http://www.php.net/manual/fr/function.urlencode.php"><span class="php_function">urlencode</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">cle</code>)<code class="php_operator">.</code><code class="php_literal1">'</code>
+<code class="php_literal1"> </code>
+<code class="php_literal1"> </code>
+<code class="php_literal1">---------------</code>
+<code class="php_literal1">Ceci</code><code class="php_literal1"> </code><code class="php_literal1">est</code><code class="php_literal1"> </code><code class="php_literal1">un</code><code class="php_literal1"> </code><code class="php_literal1">mail</code><code class="php_literal1"> </code><code class="php_literal1">automatique,</code><code class="php_literal1"> </code><code class="php_literal1">Merci</code><code class="php_literal1"> </code><code class="php_literal1">de</code><code class="php_literal1"> </code><code class="php_literal1">ne</code><code class="php_literal1"> </code><code class="php_literal1">pas</code><code class="php_literal1"> </code><code class="php_literal1">y</code><code class="php_literal1"> </code><code class="php_literal1">répondre.</code><code class="php_literal1">'</code><code class="php_operator">;</code>
+ 
+ 
+<a class="php_function lien_documentation_code" target="_blank" href="http://www.php.net/manual/fr/function.mail.php"><span class="php_function">mail</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">destinataire</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">sujet</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">message</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">entete</code>) <code class="php_operator">;</code> <code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Envoi</code><code class="php_comment2"> </code><code class="php_comment2">du</code><code class="php_comment2"> </code><code class="php_comment2">mail</code>
+ 
+<code class="php_comment2">//</code><code class="php_comment2">...</code><code class="php_comment2">	</code>
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Fermeture</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">connexion</code><code class="php_comment2">	</code>
+<code class="php_comment2">//</code><code class="php_comment2">...</code>
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Votre</code><code class="php_comment2"> </code><code class="php_comment2">code</code>
+<code class="php_comment2">//</code><code class="php_comment2">...</code>
+</code></pre></div>
+      <p>
+					Ces extraits de codes doivent être rajoutés sur la page contenant la vérification de la conformité des données saisies par l'utilisateur
+	et leurs enregistrements dans la base. <br><br><span class="mot_souligne">Exemple de réception du mail de confirmation :</span><br>
+					Je valide le formulaire avec entre autres les informations suivantes :<br><br>
+					Login : mathieugut<br>
+					Email : mathieugut@monmail.com<br><br>
+ 
+ 
+					Voilà alors le mail que je vais recevoir :<br></p>
+      <div class="TextAlign-center"><table class="tableau" style="border-width:1px;width:80%;">
+        <tbody><tr>
+          <th class="colonne_entete" style="">Mail reçu</th>
+        </tr>
+        <tr>
+          <td class="colonne" style=""><span class="mot_souligne">Sujet :</span> Activer votre compte<br><span class="mot_souligne">Expéditeur :</span> inscription@votresite.com<br><br><span class="mot_souligne">Message :</span><br>
+		Bienvenue sur VotreSite,<br><br>
+ 
+Pour activer votre compte, veuillez cliquer sur le lien ci dessous
+ou copier/coller dans votre navigateur internet.<br><br><a class="lienArticle simple" href="http://votresite.com/activation.php?log=mathieugut&amp;cle=1e374561851a32afcd802cf5bc97b707">http://votresite.com/activation.php?log=mathieugut&amp;cle=1e374561851a32afcd802cf5bc97b707</a><br><br>
+ 
+ 
+---------------<br>
+Ceci est un mail automatique, Merci de ne pas y répondre.</td>
+        </tr>
+      </tbody></table></div>
+      <p><br>Une fois le mail reçu et le clic sur le lien, l'utilisateur se retrouve alors sur la page validation.php, c'est donc cette page
+	qui va nous permettre d'activer le compte en fonction du résultat de la comparaison des deux clés (celle du lien du mail et celle de la base de données).
+ 
+ 
+	</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1164">II. La page validation.php<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1164" onclick="selectionCode(&#39;contenuCoded0e1164&#39;);">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1164" class="contenuCode"><code class="php_label">&lt;?php</code>
+ 
+<code class="php_comment2">//</code><code class="php_comment2">...</code>
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Votre</code><code class="php_comment2"> </code><code class="php_comment2">code</code>
+<code class="php_comment2">//</code><code class="php_comment2">...</code>
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Connexion</code><code class="php_comment2"> </code><code class="php_comment2">à</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">base</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">données</code>
+<code class="php_comment2">//</code><code class="php_comment2">...</code>
+ 
+ 
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Récupération</code><code class="php_comment2"> </code><code class="php_comment2">des</code><code class="php_comment2"> </code><code class="php_comment2">variables</code><code class="php_comment2"> </code><code class="php_comment2">nécessaires</code><code class="php_comment2"> </code><code class="php_comment2">à</code><code class="php_comment2"> </code><code class="php_comment2">l'activation</code>
+<code class="php_keyword3">$</code><code class="php_keyword3">login</code> <code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">_GET</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">log</code><code class="php_literal1">'</code><code class="php_operator">]</code><code class="php_operator">;</code>
+<code class="php_keyword3">$</code><code class="php_keyword3">cle</code> <code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">_GET</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">cle</code><code class="php_literal1">'</code><code class="php_operator">]</code><code class="php_operator">;</code>
+ 
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Récupération</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">clé</code><code class="php_comment2"> </code><code class="php_comment2">correspondant</code><code class="php_comment2"> </code><code class="php_comment2">au</code><code class="php_comment2"> </code><code class="php_comment2">$login</code><code class="php_comment2"> </code><code class="php_comment2">dans</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">base</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">données</code>
+<code class="php_keyword3">$</code><code class="php_keyword3">stmt</code> <code class="php_operator">=</code> <code class="php_keyword4">$dbh</code><code class="php_operator">-&gt;prepare</code>(<code class="php_literal1">"</code><code class="php_literal1">SELECT</code><code class="php_literal1"> </code><code class="php_literal1">cle</code><code class="php_literal1">,</code><code class="php_literal1">actif</code><code class="php_literal1"> </code><code class="php_literal1">FROM</code><code class="php_literal1"> </code><code class="php_literal1">membres</code><code class="php_literal1"> </code><code class="php_literal1">WHERE</code><code class="php_literal1"> </code><code class="php_literal1">login</code><code class="php_literal1"> </code><code class="php_literal1">like</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">login</code><code class="php_literal1"> </code><code class="php_literal1">"</code>)<code class="php_operator">;</code>
+<a class="php_keyword1 lien_documentation_code" target="_blank" href="http://www.php.net/manual-lookup.php?pattern=if&amp;lang=fr&amp;scope=quickref"><span>if</span></a>(<code class="php_keyword4">$stmt</code><code class="php_operator">-&gt;execute</code>(<a class="php_keyword1 lien_documentation_code" target="_blank" href="http://www.php.net/manual-lookup.php?pattern=array&amp;lang=fr&amp;scope=quickref"><span>array</span></a>(<code class="php_literal1">'</code><code class="php_literal1">:login</code><code class="php_literal1">'</code> <code class="php_operator">=</code><code class="php_operator">&gt;</code> <code class="php_keyword3">$</code><code class="php_keyword3">login</code>)) <code class="php_operator">&amp;</code><code class="php_operator">&amp;</code> <code class="php_keyword3">$</code><code class="php_keyword3">row</code> <code class="php_operator">=</code> <code class="php_keyword4">$stmt</code><code class="php_operator">-&gt;fetch</code>())
+  <code class="php_operator">{</code>
+    <code class="php_keyword3">$</code><code class="php_keyword3">clebdd</code> <code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">row</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">cle</code><code class="php_literal1">'</code><code class="php_operator">]</code><code class="php_operator">;</code>	<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Récupération</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">clé</code>
+    <code class="php_keyword3">$</code><code class="php_keyword3">actif</code> <code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">row</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">actif</code><code class="php_literal1">'</code><code class="php_operator">]</code><code class="php_operator">;</code> <code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">$actif</code><code class="php_comment2"> </code><code class="php_comment2">contiendra</code><code class="php_comment2"> </code><code class="php_comment2">alors</code><code class="php_comment2"> </code><code class="php_comment2">0</code><code class="php_comment2"> </code><code class="php_comment2">ou</code><code class="php_comment2"> </code><code class="php_comment2">1</code>
+  <code class="php_operator">}</code>
+ 
+ 
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">On</code><code class="php_comment2"> </code><code class="php_comment2">teste</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">valeur</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">variable</code><code class="php_comment2"> </code><code class="php_comment2">$actif</code><code class="php_comment2"> </code><code class="php_comment2">récupéré</code><code class="php_comment2"> </code><code class="php_comment2">dans</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">BDD</code>
+<a class="php_keyword1 lien_documentation_code" target="_blank" href="http://www.php.net/manual-lookup.php?pattern=if&amp;lang=fr&amp;scope=quickref"><span>if</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">actif</code> <code class="php_operator">=</code><code class="php_operator">=</code> <code class="php_literal1">'</code><code class="php_literal1">1</code><code class="php_literal1">'</code>) <code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Si</code><code class="php_comment2"> </code><code class="php_comment2">le</code><code class="php_comment2"> </code><code class="php_comment2">compte</code><code class="php_comment2"> </code><code class="php_comment2">est</code><code class="php_comment2"> </code><code class="php_comment2">déjà</code><code class="php_comment2"> </code><code class="php_comment2">actif</code><code class="php_comment2"> </code><code class="php_comment2">on</code><code class="php_comment2"> </code><code class="php_comment2">prévient</code>
+  <code class="php_operator">{</code>
+     <a class="php_function lien_documentation_code" target="_blank" href="http://www.php.net/manual/fr/function.echo.php"><span class="php_function">echo</span></a> <code class="php_literal1">"</code><code class="php_literal1">Votre</code><code class="php_literal1"> </code><code class="php_literal1">compte</code><code class="php_literal1"> </code><code class="php_literal1">est</code><code class="php_literal1"> </code><code class="php_literal1">déjà</code><code class="php_literal1"> </code><code class="php_literal1">actif</code><code class="php_literal1"> </code><code class="php_literal1">!</code><code class="php_literal1">"</code><code class="php_operator">;</code>
+  <code class="php_operator">}</code>
+<a class="php_keyword1 lien_documentation_code" target="_blank" href="http://www.php.net/manual-lookup.php?pattern=else&amp;lang=fr&amp;scope=quickref"><span>else</span></a> <code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Si</code><code class="php_comment2"> </code><code class="php_comment2">ce</code><code class="php_comment2"> </code><code class="php_comment2">n'est</code><code class="php_comment2"> </code><code class="php_comment2">pas</code><code class="php_comment2"> </code><code class="php_comment2">le</code><code class="php_comment2"> </code><code class="php_comment2">cas</code><code class="php_comment2"> </code><code class="php_comment2">on</code><code class="php_comment2"> </code><code class="php_comment2">passe</code><code class="php_comment2"> </code><code class="php_comment2">aux</code><code class="php_comment2"> </code><code class="php_comment2">comparaisons</code>
+  <code class="php_operator">{</code>
+     <a class="php_keyword1 lien_documentation_code" target="_blank" href="http://www.php.net/manual-lookup.php?pattern=if&amp;lang=fr&amp;scope=quickref"><span>if</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">cle</code> <code class="php_operator">=</code><code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">clebdd</code>) <code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">On</code><code class="php_comment2"> </code><code class="php_comment2">compare</code><code class="php_comment2"> </code><code class="php_comment2">nos</code><code class="php_comment2"> </code><code class="php_comment2">deux</code><code class="php_comment2"> </code><code class="php_comment2">clés</code><code class="php_comment2">	</code>
+       <code class="php_operator">{</code>
+          <code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Si</code><code class="php_comment2"> </code><code class="php_comment2">elles</code><code class="php_comment2"> </code><code class="php_comment2">correspondent</code><code class="php_comment2"> </code><code class="php_comment2">on</code><code class="php_comment2"> </code><code class="php_comment2">active</code><code class="php_comment2"> </code><code class="php_comment2">le</code><code class="php_comment2"> </code><code class="php_comment2">compte</code><code class="php_comment2"> </code><code class="php_comment2">!</code><code class="php_comment2">	</code>
+          <a class="php_function lien_documentation_code" target="_blank" href="http://www.php.net/manual/fr/function.echo.php"><span class="php_function">echo</span></a> <code class="php_literal1">"</code><code class="php_literal1">Votre</code><code class="php_literal1"> </code><code class="php_literal1">compte</code><code class="php_literal1"> </code><code class="php_literal1">a</code><code class="php_literal1"> </code><code class="php_literal1">bien</code><code class="php_literal1"> </code><code class="php_literal1">été</code><code class="php_literal1"> </code><code class="php_literal1">activé</code><code class="php_literal1"> </code><code class="php_literal1">!</code><code class="php_literal1">"</code><code class="php_operator">;</code>
+ 
+          <code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">La</code><code class="php_comment2"> </code><code class="php_comment2">requête</code><code class="php_comment2"> </code><code class="php_comment2">qui</code><code class="php_comment2"> </code><code class="php_comment2">va</code><code class="php_comment2"> </code><code class="php_comment2">passer</code><code class="php_comment2"> </code><code class="php_comment2">notre</code><code class="php_comment2"> </code><code class="php_comment2">champ</code><code class="php_comment2"> </code><code class="php_comment2">actif</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">0</code><code class="php_comment2"> </code><code class="php_comment2">à</code><code class="php_comment2"> </code><code class="php_comment2">1</code>
+          <code class="php_keyword3">$</code><code class="php_keyword3">stmt</code> <code class="php_operator">=</code> <code class="php_keyword4">$dbh</code><code class="php_operator">-&gt;prepare</code>(<code class="php_literal1">"</code><code class="php_literal1">UPDATE</code><code class="php_literal1"> </code><code class="php_literal1">membres</code><code class="php_literal1"> </code><code class="php_literal1">SET</code><code class="php_literal1"> </code><code class="php_literal1">actif</code><code class="php_literal1"> </code><code class="php_literal1">=</code><code class="php_literal1"> </code><code class="php_literal1">1</code><code class="php_literal1"> </code><code class="php_literal1">WHERE</code><code class="php_literal1"> </code><code class="php_literal1">login</code><code class="php_literal1"> </code><code class="php_literal1">like</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">login</code><code class="php_literal1"> </code><code class="php_literal1">"</code>)<code class="php_operator">;</code>
+          <code class="php_keyword4">$stmt</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:login</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">login</code>)<code class="php_operator">;</code>
+          <code class="php_keyword4">$stmt</code><code class="php_operator">-&gt;execute</code>()<code class="php_operator">;</code>
+       <code class="php_operator">}</code>
+     <a class="php_keyword1 lien_documentation_code" target="_blank" href="http://www.php.net/manual-lookup.php?pattern=else&amp;lang=fr&amp;scope=quickref"><span>else</span></a> <code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Si</code><code class="php_comment2"> </code><code class="php_comment2">les</code><code class="php_comment2"> </code><code class="php_comment2">deux</code><code class="php_comment2"> </code><code class="php_comment2">clés</code><code class="php_comment2"> </code><code class="php_comment2">sont</code><code class="php_comment2"> </code><code class="php_comment2">différentes</code><code class="php_comment2"> </code><code class="php_comment2">on</code><code class="php_comment2"> </code><code class="php_comment2">provoque</code><code class="php_comment2"> </code><code class="php_comment2">une</code><code class="php_comment2"> </code><code class="php_comment2">erreur...</code>
+       <code class="php_operator">{</code>
+          <a class="php_function lien_documentation_code" target="_blank" href="http://www.php.net/manual/fr/function.echo.php"><span class="php_function">echo</span></a> <code class="php_literal1">"</code><code class="php_literal1">Erreur</code><code class="php_literal1"> </code><code class="php_literal1">!</code><code class="php_literal1"> </code><code class="php_literal1">Votre</code><code class="php_literal1"> </code><code class="php_literal1">compte</code><code class="php_literal1"> </code><code class="php_literal1">ne</code><code class="php_literal1"> </code><code class="php_literal1">peut</code><code class="php_literal1"> </code><code class="php_literal1">être</code><code class="php_literal1"> </code><code class="php_literal1">activé</code><code class="php_literal1">.</code><code class="php_literal1">.</code><code class="php_literal1">.</code><code class="php_literal1">"</code><code class="php_operator">;</code>
+       <code class="php_operator">}</code>
+  <code class="php_operator">}</code>
+ 
+ 
+<code class="php_comment2">//</code><code class="php_comment2">...</code><code class="php_comment2">	</code>
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Fermeture</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">connexion</code><code class="php_comment2">	</code>
+<code class="php_comment2">//</code><code class="php_comment2">...</code>
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Votre</code><code class="php_comment2"> </code><code class="php_comment2">code</code>
+<code class="php_comment2">//</code><code class="php_comment2">...</code>
+</code></pre></div>
+      <p><br>Maintenant que notre champ <i>actif</i> est opérationnel et à jour, il ne nous reste plus qu'à l'utiliser pour
+					vérifier la validité d'un compte lors de la procédure de connexion de celui-ci...
+ 
+					</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2173">III. La page de connexion (exemple:login.php)<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2173" onclick="selectionCode(&#39;contenuCoded0e2173&#39;);">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2173" class="contenuCode"><code class="php_label">&lt;?php</code>
+ 
+<code class="php_comment2">//</code><code class="php_comment2">...</code>
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Votre</code><code class="php_comment2"> </code><code class="php_comment2">code</code>
+<code class="php_comment2">//</code><code class="php_comment2">...</code>
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Connexion</code><code class="php_comment2"> </code><code class="php_comment2">à</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">base</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">données</code>
+<code class="php_comment2">//</code><code class="php_comment2">...</code>
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Récupération</code><code class="php_comment2"> </code><code class="php_comment2">des</code><code class="php_comment2"> </code><code class="php_comment2">données</code><code class="php_comment2"> </code><code class="php_comment2">nécessaires</code><code class="php_comment2"> </code><code class="php_comment2">à</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">connexion</code>
+<code class="php_comment2">//</code><code class="php_comment2">...</code>
+ 
+ 
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Récupération</code><code class="php_comment2"> </code><code class="php_comment2">des</code><code class="php_comment2"> </code><code class="php_comment2">variables</code><code class="php_comment2"> </code><code class="php_comment2">necessaires</code><code class="php_comment2"> </code><code class="php_comment2">à</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">vérification</code><code class="php_comment2"> </code><code class="php_comment2">du</code><code class="php_comment2"> </code><code class="php_comment2">champ</code><code class="php_comment2"> </code><code class="php_comment2">'actif'</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">BDD</code>
+<code class="php_keyword3">$</code><code class="php_keyword3">login</code> <code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">_POST</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">login</code><code class="php_literal1">'</code><code class="php_operator">]</code><code class="php_operator">;</code>
+ 
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Récupération</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">valeur</code><code class="php_comment2"> </code><code class="php_comment2">du</code><code class="php_comment2"> </code><code class="php_comment2">champ</code><code class="php_comment2"> </code><code class="php_comment2">actif</code><code class="php_comment2"> </code><code class="php_comment2">pour</code><code class="php_comment2"> </code><code class="php_comment2">le</code><code class="php_comment2"> </code><code class="php_comment2">login</code><code class="php_comment2"> </code><code class="php_comment2">$login</code>
+<code class="php_keyword3">$</code><code class="php_keyword3">stmt</code> <code class="php_operator">=</code> <code class="php_keyword4">$dbh</code><code class="php_operator">-&gt;prepare</code>(<code class="php_literal1">"</code><code class="php_literal1">SELECT</code><code class="php_literal1"> </code><code class="php_literal1">actif</code><code class="php_literal1"> </code><code class="php_literal1">FROM</code><code class="php_literal1"> </code><code class="php_literal1">membres</code><code class="php_literal1"> </code><code class="php_literal1">WHERE</code><code class="php_literal1"> </code><code class="php_literal1">login</code><code class="php_literal1"> </code><code class="php_literal1">like</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">login</code><code class="php_literal1"> </code><code class="php_literal1">"</code>)<code class="php_operator">;</code>
+<a class="php_keyword1 lien_documentation_code" target="_blank" href="http://www.php.net/manual-lookup.php?pattern=if&amp;lang=fr&amp;scope=quickref"><span>if</span></a>(<code class="php_keyword4">$stmt</code><code class="php_operator">-&gt;execute</code>(<a class="php_keyword1 lien_documentation_code" target="_blank" href="http://www.php.net/manual-lookup.php?pattern=array&amp;lang=fr&amp;scope=quickref"><span>array</span></a>(<code class="php_literal1">'</code><code class="php_literal1">:login</code><code class="php_literal1">'</code> <code class="php_operator">=</code><code class="php_operator">&gt;</code> <code class="php_keyword3">$</code><code class="php_keyword3">login</code>))  <code class="php_operator">&amp;</code><code class="php_operator">&amp;</code> <code class="php_keyword3">$</code><code class="php_keyword3">row</code> <code class="php_operator">=</code> <code class="php_keyword4">$stmt</code><code class="php_operator">-&gt;fetch</code>())
+  <code class="php_operator">{</code>
+   	<code class="php_keyword3">$</code><code class="php_keyword3">actif</code> <code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">row</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">actif</code><code class="php_literal1">'</code><code class="php_operator">]</code><code class="php_operator">;</code> <code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">$actif</code><code class="php_comment2"> </code><code class="php_comment2">contiendra</code><code class="php_comment2"> </code><code class="php_comment2">alors</code><code class="php_comment2"> </code><code class="php_comment2">0</code><code class="php_comment2"> </code><code class="php_comment2">ou</code><code class="php_comment2"> </code><code class="php_comment2">1</code>
+  <code class="php_operator">}</code>
+ 
+ 
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Il</code><code class="php_comment2"> </code><code class="php_comment2">ne</code><code class="php_comment2"> </code><code class="php_comment2">nous</code><code class="php_comment2"> </code><code class="php_comment2">reste</code><code class="php_comment2"> </code><code class="php_comment2">plus</code><code class="php_comment2"> </code><code class="php_comment2">qu'à</code><code class="php_comment2"> </code><code class="php_comment2">tester</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">valeur</code><code class="php_comment2"> </code><code class="php_comment2">du</code><code class="php_comment2"> </code><code class="php_comment2">champ</code><code class="php_comment2"> </code><code class="php_comment2">'actif'</code><code class="php_comment2"> </code><code class="php_comment2">pour</code>
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">autoriser</code><code class="php_comment2"> </code><code class="php_comment2">ou</code><code class="php_comment2"> </code><code class="php_comment2">non</code><code class="php_comment2"> </code><code class="php_comment2">le</code><code class="php_comment2"> </code><code class="php_comment2">membre</code><code class="php_comment2"> </code><code class="php_comment2">à</code><code class="php_comment2"> </code><code class="php_comment2">se</code><code class="php_comment2"> </code><code class="php_comment2">connecter</code>
+ 
+<a class="php_keyword1 lien_documentation_code" target="_blank" href="http://www.php.net/manual-lookup.php?pattern=if&amp;lang=fr&amp;scope=quickref"><span>if</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">actif</code> <code class="php_operator">=</code><code class="php_operator">=</code> <code class="php_literal1">'</code><code class="php_literal1">1</code><code class="php_literal1">'</code>) <code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Si</code><code class="php_comment2"> </code><code class="php_comment2">$actif</code><code class="php_comment2"> </code><code class="php_comment2">est</code><code class="php_comment2"> </code><code class="php_comment2">égal</code><code class="php_comment2"> </code><code class="php_comment2">à</code><code class="php_comment2"> </code><code class="php_comment2">1,</code><code class="php_comment2"> </code><code class="php_comment2">on</code><code class="php_comment2"> </code><code class="php_comment2">autorise</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">connexion</code>
+  <code class="php_operator">{</code>
+   <code class="php_comment2">//</code><code class="php_comment2">...</code>
+   <code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">On</code><code class="php_comment2"> </code><code class="php_comment2">autorise</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">connexion...</code>
+   <code class="php_comment2">//</code><code class="php_comment2">...</code>
+  <code class="php_operator">}</code>
+<a class="php_keyword1 lien_documentation_code" target="_blank" href="http://www.php.net/manual-lookup.php?pattern=else&amp;lang=fr&amp;scope=quickref"><span>else</span></a> <code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Sinon</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">connexion</code><code class="php_comment2"> </code><code class="php_comment2">est</code><code class="php_comment2"> </code><code class="php_comment2">refusé...</code>
+  <code class="php_operator">{</code>
+   <code class="php_comment2">//</code><code class="php_comment2">...</code>
+   <code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">On</code><code class="php_comment2"> </code><code class="php_comment2">refuse</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">connexion</code><code class="php_comment2"> </code><code class="php_comment2">et/ou</code><code class="php_comment2"> </code><code class="php_comment2">on</code><code class="php_comment2"> </code><code class="php_comment2">previent</code><code class="php_comment2"> </code><code class="php_comment2">que</code><code class="php_comment2"> </code><code class="php_comment2">ce</code><code class="php_comment2"> </code><code class="php_comment2">compte</code><code class="php_comment2"> </code><code class="php_comment2">n'est</code><code class="php_comment2"> </code><code class="php_comment2">pas</code><code class="php_comment2"> </code><code class="php_comment2">activé</code>
+   <code class="php_comment2">//</code><code class="php_comment2">...</code>
+  <code class="php_operator">}</code>
+ 
+ 
+<code class="php_comment2">//</code><code class="php_comment2">...</code><code class="php_comment2">	</code>
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Fermeture</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">connexion</code><code class="php_comment2">	</code>
+<code class="php_comment2">//</code><code class="php_comment2">...</code>
+<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Votre</code><code class="php_comment2"> </code><code class="php_comment2">code</code>
+<code class="php_comment2">//</code><code class="php_comment2">...</code>
+</code></pre></div>
+      <p class="imgtext-warning">Tous les noms d'objets et de variables utilisés dans cet article sont à titre d'exemples...<br>
+		Veillez à bien les remplacer par vos propres noms.
+		</p>
+    </div>
+    
+		<h1 class="TitreSection0" id="L3">4.Conclusion<a class="HautPage" href="http://m-gut.developpez.com/tutoriels/php/mail-confirmation/#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>Cet article touche à sa fin, sachez que les exemples de codes sont à titre d'exemples et ne peuvent fonctionner par un simple Copier/Coller.<br>
+		À vous de les adapter en fonction de vos besoins...<br>
+		La vérification pour la validation d'un compte à l'aide du login et d'une clé est une façon très simpliste de faire, des améliorations
+		sont bien sûr possibles, comme l'ajout en paramètre d'un délai à respecter pour la validation, ou encore l'ajout d'un captcha pour plus de sûreté... Libre à votre imagination :)<br><br><a class="lienArticle Fr" href="http://a-pellegrini.developpez.com/tutoriels/php/mail/">Envoyer un mail en PHP</a> (Excellent article d'Adrien Pellegrini sur l'utilisation de la fonction Mail() de PHP).<br><a class="lienArticle Fr" href="http://php.developpez.com/faq/?page=pdo">La FAQ PHP (pdo)</a> (Apprendre et comprendre PDO).<br></p>
+    </div>
+    
+		<h1 class="TitreSection0" id="L4">5.Remerciements<a class="HautPage" href="http://m-gut.developpez.com/tutoriels/php/mail-confirmation/#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>
+		Merci à <a class="lienArticle simple" href="http://www.developpez.net/forums/member.php?u=30724" target="_blank">Yogui</a> et à <a class="lienArticle simple" href="http://www.developpez.net/forums/member.php?u=73775" target="_blank">Yoshio</a> pour les corrections apportées à l'article.
+		</p>
+    </div>
+  </section>
+</article>
+		<div class="clear">&nbsp;&nbsp;</div>
+<img src="./Mail de confirmation en PHP_files/compter-9" alt="" width="1" height="1"><p class="licence" style="margin-left: 321px;">Les sources présentées sur cette page sont libres de droits 
+et vous pouvez les utiliser à votre convenance. Par contre, la page de présentation
+constitue une œuvre intellectuelle protégée par les droits d'auteur. Copyright ©
+2008 MathieuGut. Aucune reproduction, même partielle, ne peut être 
+faite de ce site et de l'ensemble de son contenu&nbsp;: textes, documents, images, etc. 
+sans l'autorisation expresse de l'auteur. Sinon vous encourez selon la loi jusqu'à 
+trois ans de prison et jusqu'à 300&nbsp;000&nbsp;€ de dommages et intérêts.
+</p>
+
+</div>
+</section>
+
+<footer>
+<div id="gabarit_responsable">
+		<a href="http://club.developpez.com/contacts/contribuer">Contacter</a> le responsable de la rubrique PHP
+	</div>
+
+<ul id="gabarit_pied">
+	<li><a href="http://club.developpez.com/contacts/">Nous contacter</a>
+	</li><li><a href="http://www.developpez.com/participez/">Participez</a>
+	</li><li><a href="http://www.developpez.com/hebergement/">Hébergement</a>
+	</li><li><a href="http://www.developpez.com/legal/">Informations légales</a>
+</li></ul>
+
+<p id="gabarit_copyright">Copyright © 2000-2017 - www.developpez.com</p>
+
+</footer>
+<!-- Google Analytics général -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28115938-1']);
+  _gaq.push(['_setDomainName', 'developpez.com']);
+  _gaq.push(['_setCustomVar', 1, 'rubrique', 'php', 3]);
+  _gaq.push(['_setCustomVar', 2, 'type', 'Tutoriel', 3]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+
+
+
+		
+<div id="lightboxOverlay" style="display: none;"></div><div id="lightbox" style="display: none;"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image"><div class="lb-nav"><a class="lb-prev"></a><a class="lb-next"></a></div><div class="lb-loader"><a class="lb-cancel"><img src="./Mail de confirmation en PHP_files/lightbox-ico-loading.gif"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"><img src="./Mail de confirmation en PHP_files/lightbox-btn-close.png"></a></div></div></div></div></body></html>
